@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F2EBDD"/>
+  <rect x="32" y="32" width="1136" height="566" rx="26" fill="#FBF7F0" stroke="#C9B49A"/>
+  <rect x="74" y="74" width="360" height="482" rx="18" fill="#251E18"/>
+  <text x="112" y="148" fill="#F4EADB" font-family="Georgia, 'Times New Roman', serif" font-size="36" letter-spacing="6">CURATED AI LINKS</text>
+  <text x="112" y="248" fill="#F4EADB" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-weight="700">中转之家</text>
+  <text x="112" y="326" fill="#DCCFBE" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="28">我长期在用的一组 AI 工具与公开站点入口</text>
+  <text x="112" y="372" fill="#DCCFBE" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="28">挑的是顺手、稳定、愿意留在书签栏里的那些</text>
+  <rect x="112" y="426" width="176" height="50" rx="25" fill="#F4EADB" fill-opacity="0.1" stroke="#F4EADB" stroke-opacity="0.24"/>
+  <text x="145" y="459" fill="#F4EADB" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="24">精选清单</text>
+  <rect x="490" y="94" width="282" height="164" rx="20" fill="#F7F0E4" stroke="#D9C7AF"/>
+  <text x="524" y="140" fill="#9F6F43" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="20" letter-spacing="3">TOP PICKS</text>
+  <text x="524" y="192" fill="#201A16" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="34" font-weight="700">ChatGPT</text>
+  <text x="524" y="228" fill="#5E5349" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="20">日常对话、整理思路、快速起稿</text>
+  <rect x="800" y="94" width="282" height="164" rx="20" fill="#F7F0E4" stroke="#D9C7AF"/>
+  <text x="834" y="140" fill="#9F6F43" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="20" letter-spacing="3">TOP PICKS</text>
+  <text x="834" y="192" fill="#201A16" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="34" font-weight="700">AI Studio</text>
+  <text x="834" y="228" fill="#5E5349" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="20">试新模型、长上下文和实验入口</text>
+  <rect x="490" y="286" width="592" height="228" rx="20" fill="#F7F0E4" stroke="#D9C7AF"/>
+  <text x="524" y="332" fill="#9F6F43" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="20" letter-spacing="3">SELECTED LINKS</text>
+  <g fill="#201A16" font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif">
+    <text x="524" y="390" font-size="28" font-weight="700">豆包</text>
+    <text x="524" y="428" font-size="22" fill="#5E5349">中文对话轻快顺手</text>
+    <text x="524" y="490" font-size="28" font-weight="700" fill="#201A16">腾讯元宝</text>
+    <text x="524" y="528" font-size="22" fill="#5E5349">换一套中文助手时很方便</text>
+    <text x="784" y="390" font-size="28" font-weight="700" fill="#201A16">Dify</text>
+    <text x="784" y="428" font-size="22" fill="#5E5349">工作流和应用编排常备入口</text>
+    <text x="784" y="490" font-size="28" font-weight="700" fill="#201A16">LinuxDo</text>
+    <text x="784" y="528" font-size="22" fill="#5E5349">很多有意思的资源最后都会汇到这里</text>
+  </g>
+</svg>
