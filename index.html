@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中转之家</title>
+    <meta
+      name="description"
+      content="中转之家是一页长期维护的 AI 工具与站点精选清单，收录我自己长期在用、愿意分享出去的公开入口。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Curated AI Links</p>
+          <h1>中转之家</h1>
+          <p class="hero-text">
+            这是我长期在用的一组 AI 工具与站点入口。挑的是顺手、稳定、值得留在书签栏里的那些，先放成一页，后面继续慢慢筛。
+          </p>
+        </div>
+        <div class="hero-note">
+          <span class="note-label">精选数量</span>
+          <strong>12 个公开入口</strong>
+          <p>只保留适合公开分享、第一次点开也不会迷路的那类站点。</p>
+        </div>
+      </header>
+
+      <main>
+        <section class="section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Top Picks</p>
+              <h2>我最常先打开的 3 个</h2>
+            </div>
+            <p class="section-hint">它们不一定最全，但通常是我最先点进去的一组入口。</p>
+          </div>
+          <div class="featured-grid">
+            <article class="featured-card featured-dark">
+              <span class="tag">对话</span>
+              <h3>ChatGPT</h3>
+              <p>日常对话、整理思路、快速起稿时最顺手，作为总入口很省心。</p>
+              <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">打开入口</a>
+            </article>
+            <article class="featured-card">
+              <span class="tag">实验室</span>
+              <h3>Google AI Studio</h3>
+              <p>想试新模型、做长上下文实验或看 Google 侧的能力时，我通常会先来这里。</p>
+              <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer">打开入口</a>
+            </article>
+            <article class="featured-card">
+              <span class="tag">社区</span>
+              <h3>LINUX DO</h3>
+              <p>很多有意思的工具、公益站和折腾经验，最后都会在这里汇起来。</p>
+              <a href="https://linux.do/" target="_blank" rel="noopener noreferrer">打开入口</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Selected Links</p>
+              <h2>这页里我愿意长期留着的入口</h2>
+            </div>
+            <p class="section-hint">不做大全，只留我觉得值得保存在这一页里的公开站点。</p>
+          </div>
+          <div class="link-grid" id="link-grid"></div>
+        </section>
+      </main>
+
+      <footer class="footer-note">
+        <p>
+          这页会按我自己的使用习惯慢慢更新，只收我愿意公开分享出去、也愿意留在书签栏里的入口。
+        </p>
+      </footer>
+    </div>
+    <script>
+      const links = [
+        {
+          tag: "对话",
+          title: "豆包",
+          description: "中文环境里上手很快，做轻量问答和随手对话时很省时间。",
+          href: "https://www.doubao.com/",
+        },
+        {
+          tag: "助手",
+          title: "腾讯元宝",
+          description: "界面干净，偶尔想换个中文对话工具时，我会从这里开始。",
+          href: "https://yuanbao.tencent.com/",
+        },
+        {
+          tag: "聚合",
+          title: "Cheap AI",
+          description: "想快速扫一眼不同 AI 平台价格和订阅信息时，这种聚合页很有参考价值。",
+          href: "https://cheap-ai.uk/",
+        },
+        {
+          tag: "项目",
+          title: "Dify",
+          description: "做工作流和应用编排时绕不开的大项目，官方仓库本身就值得常备。",
+          href: "https://github.com/langgenius/dify",
+        },
+        {
+          tag: "公益站",
+          title: "CnGPT",
+          description: "这类公益入口我会谨慎保留，只放那些我愿意公开分享出去的站点。",
+          href: "https://cngpt.net/",
+        },
+        {
+          tag: "公益站",
+          title: "WONG",
+          description: "更像一类长期观察位，有时能看到有意思的服务或定价变化。",
+          href: "https://wzw.pp.ua/",
+        },
+        {
+          tag: "平台",
+          title: "NowCoding",
+          description: "如果后面继续扩展这页里的开发型资源，这类平台入口会很适合保留。",
+          href: "https://nowcoding.ai/",
+        },
+        {
+          tag: "路由",
+          title: "AnyRouter",
+          description: "这类工具适合在需要多模型、多入口切换的时候留作备选。",
+          href: "https://anyrouter.top/",
+        },
+        {
+          tag: "站点",
+          title: "Huainova",
+          description: "我把它留在清单里，更多是作为一类常用 AI 站点的公开入口备忘。",
+          href: "https://ai.huaibao.top/",
+        },
+        {
+          tag: "集市",
+          title: "LD 士多",
+          description: "这页最终也是为了给这里的小店入驻提供一个公开链接，顺手把主页一起留着。",
+          href: "https://ldcstore.com/",
+        },
+      ];
+
+      const grid = document.getElementById("link-grid");
+      for (const link of links) {
+        const card = document.createElement("article");
+        card.className = "link-card";
+        card.innerHTML = `
+          <span class="tag">${link.tag}</span>
+          <h3>${link.title}</h3>
+          <p>${link.description}</p>
+          <a href="${link.href}" target="_blank" rel="noopener noreferrer">访问站点</a>
+        `;
+        grid.appendChild(card);
+      }
+    </script>
+  </body>
+</html>
