@@ -284,14 +284,20 @@
     const userMenu = $("[data-user-menu]");
     if (!signinBtn || !userMenu) return;
 
+    const setHidden = (el, hidden) => {
+      el.hidden = hidden;
+      el.classList.toggle("auth-hidden", hidden);
+      el.setAttribute("aria-hidden", hidden ? "true" : "false");
+    };
+
     const user = window.LDCAuth && window.LDCAuth.getUser();
     if (user) {
-      signinBtn.hidden = true;
-      userMenu.hidden = false;
+      setHidden(signinBtn, true);
+      setHidden(userMenu, false);
       fillUserUI(user);
     } else {
-      signinBtn.hidden = false;
-      userMenu.hidden = true;
+      setHidden(signinBtn, false);
+      setHidden(userMenu, true);
       userMenu.classList.remove("open");
     }
   }

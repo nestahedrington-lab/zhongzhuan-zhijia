@@ -124,6 +124,10 @@ input {
   display: none !important;
 }
 
+.auth-hidden {
+  display: none !important;
+}
+
 /* ---------- Layout root ---------- */
 .app-root {
   position: relative;
