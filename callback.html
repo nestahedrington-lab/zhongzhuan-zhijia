@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登录中... · 百货小店</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .callback-wrap {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .callback-card {
+        position: relative;
+        overflow: hidden;
+        max-width: 420px;
+        width: 100%;
+        padding: 36px 32px;
+        border: 1px solid var(--border-2);
+        border-radius: 1.8rem;
+        background: var(--card);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: var(--shadow-hero);
+        text-align: center;
+      }
+      .callback-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at top right,
+          var(--halo-bg),
+          transparent 36%
+        );
+        pointer-events: none;
+      }
+      .callback-card > * {
+        position: relative;
+      }
+      .callback-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: var(--primary-soft);
+        color: var(--primary);
+      }
+      .callback-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+      .callback-title {
+        margin: 0 0 8px;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--foreground);
+      }
+      .callback-msg {
+        margin: 0 0 22px;
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--muted);
+        word-break: break-all;
+      }
+      .callback-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        height: 38px;
+        padding: 0 18px;
+        border-radius: 12px;
+        background: var(--primary);
+        color: var(--primary-foreground);
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 200ms ease;
+      }
+      .callback-btn:hover {
+        background: var(--primary-strong);
+      }
+      .spinner {
+        width: 28px;
+        height: 28px;
+        border: 3px solid var(--primary-soft);
+        border-top-color: var(--primary);
+        border-radius: 999px;
+        animation: spin 700ms linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var theme =
+            saved && saved !== "system"
+              ? saved
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.classList.add(theme);
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="callback-wrap">
+      <div class="callback-card">
+        <div class="callback-icon" id="cb-icon">
+          <div class="spinner" aria-label="loading"></div>
+        </div>
+        <h1 class="callback-title" id="cb-title">正在登录...</h1>
+        <p class="callback-msg" id="cb-msg">
+          正在与 Linux DO 完成授权交换，请稍候。
+        </p>
+        <a
+          id="cb-btn"
+          class="callback-btn"
+          href="./"
+          style="display: none"
+          >返回首页</a
+        >
+      </div>
+    </div>
+
+    <script src="./auth-config.js"></script>
+    <script src="./auth.js"></script>
+    <script>
+      (async function () {
+        const titleEl = document.getElementById("cb-title");
+        const msgEl = document.getElementById("cb-msg");
+        const iconEl = document.getElementById("cb-icon");
+        const btnEl = document.getElementById("cb-btn");
+
+        function showSuccess(user) {
+          iconEl.innerHTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+          titleEl.textContent = `欢迎，${user.username || user.name || "Linux DO 用户"}`;
+          msgEl.textContent = "登录成功，2 秒后回到首页...";
+          btnEl.style.display = "inline-flex";
+          setTimeout(() => {
+            location.replace("./");
+          }, 2000);
+        }
+
+        function showError(err) {
+          iconEl.style.background =
+            "color-mix(in srgb, #ef4444 12%, transparent)";
+          iconEl.style.color = "#ef4444";
+          iconEl.innerHTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+          titleEl.textContent = "登录失败";
+          msgEl.textContent = err && err.message ? err.message : String(err);
+          btnEl.style.display = "inline-flex";
+          btnEl.textContent = "返回首页重试";
+        }
+
+        try {
+          const user = await window.LDCAuth.handleCallback();
+          showSuccess(user);
+        } catch (e) {
+          console.error("[OAuth callback]", e);
+          showError(e);
+        }
+      })();
+    </script>
+  </body>
+</html>

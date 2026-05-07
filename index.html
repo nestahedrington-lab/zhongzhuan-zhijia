@@ -3,155 +3,437 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>中转之家</title>
-    <meta
-      name="description"
-      content="中转之家是一页长期维护的 AI 工具与站点精选清单，收录我自己长期在用、愿意分享出去的公开入口。"
+    <title>百货小店</title>
+    <meta name="description" content="百货小店 · 申请入驻 LDC 生态" />
+    <meta name="apple-mobile-web-app-title" content="百货小店" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     />
     <link rel="stylesheet" href="./styles.css" />
+
+    <!-- 主题预设：避免 FOUC -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          var theme =
+            saved && saved !== "system"
+              ? saved
+              : prefersDark
+                ? "dark"
+                : "light";
+          document.documentElement.classList.add(theme);
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
-    <div class="page-shell">
-      <header class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Curated AI Links</p>
-          <h1>中转之家</h1>
-          <p class="hero-text">
-            这是我长期在用的一组 AI 工具与站点入口。挑的是顺手、稳定、值得留在书签栏里的那些，先放成一页，后面继续慢慢筛。
-          </p>
-        </div>
-        <div class="hero-note">
-          <span class="note-label">精选数量</span>
-          <strong>12 个公开入口</strong>
-          <p>只保留适合公开分享、第一次点开也不会迷路的那类站点。</p>
+    <div class="app-root">
+      <!-- ============ Header ============ -->
+      <header class="site-header">
+        <div class="container header-inner">
+          <div class="header-left">
+            <a class="brand" href="./">
+              <span class="brand-logo" aria-hidden="true">百</span>
+              <span class="brand-name">百货小店</span>
+            </a>
+            <nav class="header-nav">
+              <a href="#" data-action="ldc-nav">LDC Nav</a>
+            </nav>
+          </div>
+
+          <div class="header-right">
+            <nav class="action-pill">
+              <button
+                type="button"
+                class="action-btn lang-btn"
+                title="Language"
+                aria-label="Language"
+                data-action="lang"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon"
+                  aria-hidden="true"
+                >
+                  <path d="m5 8 6 6"></path>
+                  <path d="m4 14 6-6 2-3"></path>
+                  <path d="M2 5h12"></path>
+                  <path d="M7 2h1"></path>
+                  <path d="m22 22-5-10-5 10"></path>
+                  <path d="M14 18h6"></path>
+                </svg>
+                <span class="lang-label">EN</span>
+              </button>
+
+              <button
+                type="button"
+                class="action-btn theme-btn"
+                title="Toggle theme"
+                aria-label="Toggle theme"
+                data-action="theme"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-sun"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2"></path>
+                  <path d="M12 20v2"></path>
+                  <path d="m4.93 4.93 1.41 1.41"></path>
+                  <path d="m17.66 17.66 1.41 1.41"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="m6.34 17.66-1.41 1.41"></path>
+                  <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-moon"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+                  ></path>
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                class="action-btn signin-btn"
+                data-action="signin"
+              >
+                Sign in
+              </button>
+
+              <div class="user-menu" data-user-menu hidden>
+                <button
+                  type="button"
+                  class="user-trigger"
+                  data-action="user-trigger"
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                >
+                  <img
+                    class="user-avatar"
+                    alt=""
+                    referrerpolicy="no-referrer"
+                    data-user-avatar
+                  />
+                  <span class="user-name" data-user-name></span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="user-caret"
+                    aria-hidden="true"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+
+                <div class="user-popover" data-user-popover>
+                  <div class="user-popover-header">
+                    <img
+                      class="user-popover-avatar"
+                      alt=""
+                      referrerpolicy="no-referrer"
+                      data-user-avatar
+                    />
+                    <div class="user-popover-meta">
+                      <div class="user-popover-name" data-user-name></div>
+                      <div
+                        class="user-popover-email"
+                        data-user-email
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="user-popover-body">
+                    <div class="user-trust">
+                      <span class="user-trust-label" data-trust-label
+                        >Trust Level</span
+                      >
+                      <span class="user-trust-value" data-user-trust></span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="user-logout"
+                    data-action="logout"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                      <polyline points="16 17 21 12 16 7" />
+                      <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                    <span data-logout-label>退出登录</span>
+                  </button>
+                </div>
+              </div>
+            </nav>
+          </div>
         </div>
       </header>
 
-      <main>
-        <section class="section">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Top Picks</p>
-              <h2>我最常先打开的 3 个</h2>
+      <!-- ============ Main ============ -->
+      <main class="container main-content">
+        <!-- Hero -->
+        <section class="hero-card">
+          <div class="hero-bg"></div>
+          <div class="hero-line"></div>
+          <div class="hero-inner">
+            <div class="hero-text">
+              <h1 class="hero-title">Welcome to 百货小店</h1>
+              <p class="hero-sub">
+                A virtual goods shop for the Linux DO ecosystem
+              </p>
             </div>
-            <p class="section-hint">它们不一定最全，但通常是我最先点进去的一组入口。</p>
-          </div>
-          <div class="featured-grid">
-            <article class="featured-card featured-dark">
-              <span class="tag">对话</span>
-              <h3>ChatGPT</h3>
-              <p>日常对话、整理思路、快速起稿时最顺手，作为总入口很省心。</p>
-              <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">打开入口</a>
-            </article>
-            <article class="featured-card">
-              <span class="tag">实验室</span>
-              <h3>Google AI Studio</h3>
-              <p>想试新模型、做长上下文实验或看 Google 侧的能力时，我通常会先来这里。</p>
-              <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer">打开入口</a>
-            </article>
-            <article class="featured-card">
-              <span class="tag">社区</span>
-              <h3>LINUX DO</h3>
-              <p>很多有意思的工具、公益站和折腾经验，最后都会在这里汇起来。</p>
-              <a href="https://linux.do/" target="_blank" rel="noopener noreferrer">打开入口</a>
-            </article>
+            <div class="hero-stats">
+              <div class="visitor-pill">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon-sm visitor-icon"
+                  aria-hidden="true"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                </svg>
+                <span class="visitor-count" id="visitor-count">0</span>
+                <span class="visitor-label">Visitors</span>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section class="section">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Selected Links</p>
-              <h2>这页里我愿意长期留着的入口</h2>
+        <!-- Filter / Search bar -->
+        <section class="filter-section">
+          <div class="filter-card">
+            <div class="filter-grid">
+              <div class="search-wrap">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="search-icon"
+                  aria-hidden="true"
+                >
+                  <path d="m21 21-4.34-4.34"></path>
+                  <circle cx="11" cy="11" r="8"></circle>
+                </svg>
+                <input
+                  type="text"
+                  class="search-input"
+                  placeholder="Search products..."
+                  id="search-input"
+                />
+              </div>
+
+              <div class="category-wrap">
+                <div class="category-pill">
+                  <div class="category-thumb"></div>
+                  <button
+                    type="button"
+                    class="category-btn active"
+                    data-cat="all"
+                  >
+                    All
+                  </button>
+                </div>
+              </div>
+
+              <div class="sort-wrap">
+                <button
+                  type="button"
+                  class="sort-btn active"
+                  data-sort="default"
+                >
+                  Default
+                </button>
+                <button type="button" class="sort-btn" data-sort="stock">
+                  Stock
+                </button>
+                <button type="button" class="sort-btn" data-sort="sold">
+                  Sold
+                </button>
+                <button type="button" class="sort-btn" data-sort="price-asc">
+                  Price ↑
+                </button>
+                <button type="button" class="sort-btn" data-sort="price-desc">
+                  Price ↓
+                </button>
+              </div>
             </div>
-            <p class="section-hint">不做大全，只留我觉得值得保存在这一页里的公开站点。</p>
           </div>
-          <div class="link-grid" id="link-grid"></div>
         </section>
+
+        <!-- Products -->
+        <section class="products-section">
+          <div class="products-header">
+            <h2 class="products-title">Explore products</h2>
+            <span class="result-badge" id="result-badge">0 results</span>
+          </div>
+
+          <div class="products-grid" id="products-grid">
+            <!-- 空商品状态 -->
+            <div class="empty-state">
+              <div class="empty-icon" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m7.5 4.27 9 5.15"></path>
+                  <path
+                    d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+                  ></path>
+                  <path d="m3.3 7 8.7 5 8.7-5"></path>
+                  <path d="M12 22V12"></path>
+                </svg>
+              </div>
+              <p class="empty-title">暂无商品</p>
+              <p class="empty-sub">店铺正在筹备中，商品上架后将在此展示。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pagination -->
+        <nav class="pagination">
+          <div class="page-info">
+            <span class="page-label">Page 1 / 1</span>
+          </div>
+          <div class="page-buttons">
+            <button type="button" class="page-btn" disabled>Prev</button>
+            <button type="button" class="page-btn" disabled>Next</button>
+          </div>
+        </nav>
       </main>
 
-      <footer class="footer-note">
-        <p>
-          这页会按我自己的使用习惯慢慢更新，只收我愿意公开分享出去、也愿意留在书签栏里的入口。
-        </p>
+      <!-- ============ Footer ============ -->
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <p class="footer-text">
+            Built for Linux DO ecosystem. Not an official service. Developed by
+            chatgpt.org.uk.
+          </p>
+          <a
+            href="#"
+            class="footer-version"
+            data-action="version"
+            >v1.4.1</a
+          >
+        </div>
       </footer>
-    </div>
-    <script>
-      const links = [
-        {
-          tag: "对话",
-          title: "豆包",
-          description: "中文环境里上手很快，做轻量问答和随手对话时很省时间。",
-          href: "https://www.doubao.com/",
-        },
-        {
-          tag: "助手",
-          title: "腾讯元宝",
-          description: "界面干净，偶尔想换个中文对话工具时，我会从这里开始。",
-          href: "https://yuanbao.tencent.com/",
-        },
-        {
-          tag: "聚合",
-          title: "Cheap AI",
-          description: "想快速扫一眼不同 AI 平台价格和订阅信息时，这种聚合页很有参考价值。",
-          href: "https://cheap-ai.uk/",
-        },
-        {
-          tag: "项目",
-          title: "Dify",
-          description: "做工作流和应用编排时绕不开的大项目，官方仓库本身就值得常备。",
-          href: "https://github.com/langgenius/dify",
-        },
-        {
-          tag: "公益站",
-          title: "CnGPT",
-          description: "这类公益入口我会谨慎保留，只放那些我愿意公开分享出去的站点。",
-          href: "https://cngpt.net/",
-        },
-        {
-          tag: "公益站",
-          title: "WONG",
-          description: "更像一类长期观察位，有时能看到有意思的服务或定价变化。",
-          href: "https://wzw.pp.ua/",
-        },
-        {
-          tag: "平台",
-          title: "NowCoding",
-          description: "如果后面继续扩展这页里的开发型资源，这类平台入口会很适合保留。",
-          href: "https://nowcoding.ai/",
-        },
-        {
-          tag: "路由",
-          title: "AnyRouter",
-          description: "这类工具适合在需要多模型、多入口切换的时候留作备选。",
-          href: "https://anyrouter.top/",
-        },
-        {
-          tag: "站点",
-          title: "Huainova",
-          description: "我把它留在清单里，更多是作为一类常用 AI 站点的公开入口备忘。",
-          href: "https://ai.huaibao.top/",
-        },
-        {
-          tag: "集市",
-          title: "LD 士多",
-          description: "这页最终也是为了给这里的小店入驻提供一个公开链接，顺手把主页一起留着。",
-          href: "https://ldcstore.com/",
-        },
-      ];
 
-      const grid = document.getElementById("link-grid");
-      for (const link of links) {
-        const card = document.createElement("article");
-        card.className = "link-card";
-        card.innerHTML = `
-          <span class="tag">${link.tag}</span>
-          <h3>${link.title}</h3>
-          <p>${link.description}</p>
-          <a href="${link.href}" target="_blank" rel="noopener noreferrer">访问站点</a>
-        `;
-        grid.appendChild(card);
-      }
-    </script>
+      <!-- ============ Mobile bottom nav ============ -->
+      <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+        <div class="mbn-fade"></div>
+        <div class="mbn-glow"></div>
+        <div class="mbn-pill">
+          <a class="mbn-item active" href="./" data-mbn="home">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mbn-icon"
+              aria-hidden="true"
+            >
+              <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+              <path
+                d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+              ></path>
+            </svg>
+            <span>Home</span>
+          </a>
+          <a class="mbn-item" href="#" data-mbn="nav">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mbn-icon"
+              aria-hidden="true"
+            >
+              <path
+                d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"
+              ></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+            <span>LDC Nav</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- 简易 toast -->
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <script src="./auth-config.js"></script>
+    <script src="./auth.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>

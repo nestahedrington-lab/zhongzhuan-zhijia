@@ -1,0 +1,10 @@
+name = "baihuo-shop-auth"
+main = "oauth.js"
+compatibility_date = "2025-04-01"
+
+# 部署后会得到一个 https://baihuo-shop-auth.<your-subdomain>.workers.dev URL
+# 把这个 URL 填到 ../auth-config.js 的 workerUrl 字段
+
+# Secret 不要写在这里！用 wrangler secret put 命令设置：
+#   wrangler secret put LDC_CLIENT_ID
+#   wrangler secret put LDC_CLIENT_SECRET
